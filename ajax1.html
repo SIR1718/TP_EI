@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<button onclick="getKey1();">Clica-me Rápido</button>
+<button onclick="getKey2();">Clica-me Lento</button>
+
+<div id="log">
+	
+</div>
+
+<button id="btroca">troca</button>
+</body>
+<script type="text/javascript">
+
+
+buttons = document.getElementsByTagName("button");
+console.log(buttons);
+
+
+btroca = document.getElementById("btroca");
+btroca.addEventListener("click", function () {
+	b1 = buttons[0].cloneNode(true);
+	b2 = buttons[1].cloneNode(true);
+	document.body.replaceChild(b2,buttons[0]);
+	document.body.replaceChild(b1,buttons[1])
+})
+
+
+
+
+
+//var ajax = new XMLHttpRequest();
+
+var url1 = 'http://62.28.241.149/~pmoreira/KEYSERVER/KeyServerJSON.php';
+
+var url2 = 'http://62.28.241.149/~pmoreira/KEYSERVER/KeyServerJSONslow.php';
+
+   
+function callOtherDomain(url) {
+  var ajax = new XMLHttpRequest();
+ ; 
+    
+    ajax.onreadystatechange = function () {
+    	//debugger;
+	
+	console.log(ajax.readyState);
+
+	if (ajax.readyState == 4 && ajax.status == 200) {
+		newP = document.createElement("p");
+		console.log(ajax.responseText);
+		respostaJS = JSON.parse(ajax.responseText);
+		
+		mydiv = document.getElementById("log");
+
+		keydiv = document.createElement("div");
+		keydiv.className="key";
+
+		mydiv.appendChild(keydiv);
+
+		newULN = document.createElement("ul");
+		newULS = document.createElement("ul");
+
+		keydiv.appendChild(newULN);
+		keydiv.appendChild(newULS);
+
+		for(i=0; i<respostaJS.numbers.length; i++) {
+			newn = document.createElement("li");
+			newn.innerHTML = respostaJS.numbers[i];
+			newULN.appendChild(newn);
+		};
+
+		for(i=0; i<respostaJS.stars.length; i++) {
+			news = document.createElement("li");
+			news.innerHTML = respostaJS.stars[i];
+			newULS.appendChild(news);
+		}
+
+		//keydiv.innerHTML="ola";
+
+
+		newULN.className="numbers";
+		newULS.className="stars";
+
+
+
+		console.log(keydiv); 
+
+
+		console.log(respostaJS);
+		//newP.innerHTML = ajax.responseText;
+
+		mydiv.appendChild(newP);
+	}
+}
+	ajax.open('GET', url);
+    ajax.send(); 
+  }
+
+
+
+
+function getKey1() {
+	callOtherDomain(url1);
+}
+
+
+function getKey2() {
+	callOtherDomain(url2);
+}
+
+
+</script>
+</html>

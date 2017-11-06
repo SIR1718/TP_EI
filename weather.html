@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Estados do Tempo</title>
+</head>
+<body>
+<div id="control">
+	<input type="text" id="ilocal"/>
+	<button id="bwget">Obter estado do tempo</button>
+	<button id="bwclean">Limpar</button>
+</div>
+<div id="content">
+	
+</div>
+</body>
+<script type="text/javascript">
+	bget 	= document.getElementById("bwget");
+	bclean 	= document.getElementById("bwclean");
+	ilocal 	= document.getElementById("ilocal");
+	content = document.getElementById("content");
+
+
+	bget.addEventListener("click", getCurrentWeather);
+	bclean.addEventListener("click", cleanWeatherInfo);
+
+
+	function getCurrentWeather() {
+		console.log("get");
+
+	}
+
+	function cleanWeatherInfo() {
+		console.log("clean")
+	}
+
+</script>
+</html>

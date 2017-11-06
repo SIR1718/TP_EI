@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		@media screen and (max-width: 900px) {
+  			body {background-color: lightblue}
+		}
+		@media screen and (max-width: 400px) {
+  			body {background-color: lightgreen}
+		}
+
+		a[href $= pdf]::before {
+			content : "[PDF]";
+		}
+		a[href $= jpg]::before {
+			content : "[IMG]";
+		}
+
+	</style>
+</head>
+<body>
+
+<p> <a href="http://xxx.yyy.zz/a.pdf"> documento1 </a>
+<p> <a href="http://xxx.yyy.zz/a.pdf"> documento2 </a>
+<p> <a href="http://xxx.yyy.zz/a.jpg"> imagem1 </a>
+<p> <a href="http://xxx.yyy.zz/a.jpg"> imagem2 </a>
+
+
+
+</body>
+</html>

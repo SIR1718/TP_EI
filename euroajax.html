@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery/jquery-3.2.1.js"></script>
+</head>
+<body>
+
+pedido de chaves euromilhões em XML
+</body>
+<script>
+
+// consumindo XML com AJAX
+
+$.ajax({
+	url : "http://62.28.241.149/~pmoreira/KEYSERVER/KeyServerXML.php",
+	method : "GET",
+	dataType : "XML",
+	success : function(dataXML) {
+		console.log(dataXML);
+		exemplo = dataXML.getElementsByTagName("num");
+		
+
+		exemplo2 = $(dataXML).find("num").filter(function(idx,val) { if($(val).text() > 20) return true; else return false;}).text("xxx");
+		
+		console.log(exemplo2);
+
+		//console.log($(dataXML).find("num"));
+		chave =  $("<div/>").addClass("key");
+		listan = $("<ul/>").addClass("numbers");
+		listas = $("<ul/>").addClass("stars");
+		chave.append(listan).append(listas);
+
+		//$(dataXML).find("numbers").append($("<num/>").text("1000"));
+		//console.log($(dataXML).find("numbers"));
+		//var i= 1;
+		//$(dataXML).find("numbers num").text(i);
+
+		$(dataXML).find("numbers num").each(function (idx,val) {
+			console.log(val);
+
+			listan.append($("<li/>").html($(val).text()));
+		});
+
+		$(dataXML).find("stars num").each(function (idx,val) {
+			console.log(val);
+			listas.append($("<li/>").html($(val).text()));
+		});
+
+		$(document.body).append(chave);
+
+
+
+	}
+})
+</script>
+
+</html>
